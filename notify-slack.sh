@@ -41,7 +41,7 @@ TRANSCRIPT_PATH=$(echo "$JSON_INPUT" | jq -r '.transcript_path // empty' 2>/dev/
 if [ -n "$TRANSCRIPT_PATH" ]; then
     PROJECT_DIR=$(basename "$(dirname "$TRANSCRIPT_PATH")")
     PROJECT_PATH_CLEANED=$(echo "$PROJECT_DIR" | sed 's/^-//')  # 先頭の - を削除
-    MESSAGE="${MESSAGE}\nプロジェクトパス: ${PROJECT_PATH_CLEANED}"
+    MESSAGE="プロジェクトパス: ${PROJECT_PATH_CLEANED}"
 fi
 
 fi
