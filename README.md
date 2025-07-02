@@ -52,6 +52,12 @@ echo '{"transcript_path": "/path/to/project/transcript.json"}' | ./notify-slack.
 echo '{"transcript_path": "/path/to/project/transcript.json"}' | ./notify-slack.sh Stop
 ```
 
+## 通知の表示例
+
+以下のようなメッセージが Slack に送信されます：
+
+![Slack通知の表示例](image.png)
+
 ## ファイル構成
 
 - `notify-slack.sh` - Slack 通知を送信するメインスクリプト
