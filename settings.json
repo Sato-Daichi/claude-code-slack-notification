@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command", 
-            "command": "~/.claude/notify-slack.sh"
+            "command": "~/.claude/notify-slack.sh Notification"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command", 
-            "command": "~/.claude/notify-slack.sh"
+            "command": "~/.claude/notify-slack.sh Stop"
           }
         ]
       }
