@@ -33,17 +33,16 @@ case "$1" in
         ;;
 esac
 
-# 標準入力からJSONが与えられた場合、プロジェクト名を取得する
+# JSONファイルからプロジェクトパスを取得する
 if [ ! -t 0 ]; then
     JSON_INPUT=$(cat)
 
-    # transcript_path からプロジェクト名抽出（連続した "-" のあとを取り出す）
-    TRANSCRIPT_PATH=$(echo "$JSON_INPUT" | jq -r '.transcript_path // empty' 2>/dev/null)
-    if [ -n "$TRANSCRIPT_PATH" ]; then
-        PROJECT_DIR=$(basename "$(dirname "$TRANSCRIPT_PATH")")
-        PROJECT_NAME=$(echo "$PROJECT_DIR" | sed -E 's/^.*-{2,}//')  # "--" 以上の連続ハイフンのあとを取得
-        MESSAGE="プロジェクト名: ${PROJECT_NAME}"
-    fi
+TRANSCRIPT_PATH=$(echo "$JSON_INPUT" | jq -r '.transcript_path // empty' 2>/dev/null)
+if [ -n "$TRANSCRIPT_PATH" ]; then
+    PROJECT_DIR=$(basename "$(dirname "$TRANSCRIPT_PATH")")
+    PROJECT_PATH_CLEANED=$(echo "$PROJECT_DIR" | sed 's/^-//')  # 先頭の - を削除
+    MESSAGE="${MESSAGE}\nプロジェクトパス: ${PROJECT_PATH_CLEANED}"
+fi
 
 fi
 
